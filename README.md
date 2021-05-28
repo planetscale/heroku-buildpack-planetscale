@@ -1,39 +1,28 @@
-# PlanetScale CLI [![Build status](https://badge.buildkite.com/2307000d934b6a245eb9b84bcac9c1eea1a7c13f010b20c8ba.svg?branch=main)](https://buildkite.com/planetscale/cli)
+# Herokue Buildpack for PlanetScale CLI
 
-PlanetScale is more than a database and our CLI is more than a jumble of commands. The `pscale` command line tool brings branches, deploy requests, and other PlanetScale concepts to your finger tips.
+This is a Heroku buildpack for adding Planetscale CLI into your project.
 
 ![PlanetScale CLI](https://user-images.githubusercontent.com/155044/118568235-66c8e380-b745-11eb-8124-5a72e17f7f7b.png)
 
+## Usage
 
-## Installation
-
-### macOS
-
-`pscale` is available via a Homebrew Tap, and as downloadable binary from the [releases](https://github.com/planetscale/cli/releases/latest) page:
+Add this buildpack to your Heroku project
 
 ```
-brew install planetscale/tap/pscale
-```
-Optional: `pscale` requires the MySQL Client for certain commands. You can install it by running:
-
-```
-brew install mysql-client
+heroku buildpacks:add https://github.com/planetscale/heroku-buildpack-planetscale
 ```
 
-To upgrade to the latest version:
+The command will install [`pscale` CLI](https://github.com/planetscale/heroku-buildpack-planetscale) into your Heroku application.
+
+This buildpack also supports installing specific cli versions by providing the `PSCALE_VERSION` environment variable with a version number.
 
 ```
-brew upgrade pscale
+export PSCALE_VERSION=0.40.0
 ```
 
-### Linux
+## Documentation
 
-`pscale` is available as downloadable binaries from the [releases](https://github.com/planetscale/cli/releases/latest) page. Download the .deb or .rpm from the [releases](https://github.com/planetscale/cli/releases/latest) page and install with `sudo dpkg -i` and `sudo rpm -i` respectively.
+For more information about buildpacks, see these Heroku Dev Center articles
 
-### Windows
-
-`pscale` is available as downloadable binary from the [releases](https://github.com/planetscale/cli/releases/latest) page.
-
-### Manually
-
-Download the pre-compiled binaries from the [releases](https://github.com/planetscale/cli/releases/latest) page and copy to the desired location.
+- [Buildpacks](https://devcenter.heroku.com/articles/buildpacks)
+- [Buildpack API](https://devcenter.heroku.com/articles/buildpack-api)

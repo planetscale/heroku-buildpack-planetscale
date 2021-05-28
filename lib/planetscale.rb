@@ -5,16 +5,19 @@ module Planetscale
   class Installer
     class << self
       def run(install_dir)
-        FileUtils.mkdir_p(install_dir)
-        Dir.chdir(install_dir) do
-          install(install_dir)
-          setup_profile_d(install_dir)
+        install_pathname = Pathname(install_dir)
+        bin_dir = install_pathname.join("bin")
+
+        FileUtils.mkdir_p(bin_dir)
+        Dir.chdir(bin_dir) do
+          install(bin_dir)
+          setup_profile_d(install_pathname, bin_dir)
         end
       end
 
       private
 
-      def install(install_dir)
+      def install(dir)
         puts "---- Installing pscale\n"
 
         process = nil
@@ -22,18 +25,18 @@ module Planetscale
         trap("CHLD") do
           while !process.nil? && pid = Process.waitpid(-1, Process::WNOHANG)  do
             process = nil
-            puts "---- pscale added to #{install_dir}\n"
+            puts "---- pscale added to #{dir}\n"
           end
         end
 
-        process = Process.spawn("#{curl_command} - | #{untar_command(install_dir)}")
+        process = Process.spawn("#{curl_command} - | #{untar_command(dir)}")
         puts "---- Downloading and extracting pscale from #{release_url}"
 
         sleep 0.1 while !process.nil?
       end
 
       def untar_command(dir)
-        "tar zx -C #{dir} --transform=s/.*/pscale/"
+        "tar x -z -C #{dir} --transform=s/.*/pscale/"
       end
 
       def curl_command
@@ -53,17 +56,16 @@ module Planetscale
       end
 
       def version
-        ENV["PSCALE_VERSION"] || "0.40.0"
+        ENV["PSCALE_CLI_VERSION"] || "0.40.0"
       end
 
-      def setup_profile_d(install_dir)
-        install_pathname = Pathname(install_dir)
+      def setup_profile_d(install_pathname, bin_dir)
         profile_path = install_pathname.join(".profile.d/heroku-buildpack-planetscale.sh")
         profile_path.parent.mkpath
 
         File.open(profile_path, "w") do |file|
           file.puts "# add pscale to the path"
-          file.puts "export PATH=$PATH:$HOME/#{install_pathname.basename}"
+          file.puts "export PATH=$PATH:$HOME/#{bin_dir.basename}"
         end
         puts "----- Created profile.d script at #{profile_path}"
       end

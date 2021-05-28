@@ -7,7 +7,7 @@ module Planetscale
       def run(install_dir)
         FileUtils.mkdir_p(install_dir)
         Dir.chdir(install_dir) do
-          # install(install_dir)
+          install(install_dir)
           setup_profile_d(install_dir)
         end
       end

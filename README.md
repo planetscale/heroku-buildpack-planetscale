@@ -1,4 +1,6 @@
-# Herokue Buildpack for PlanetScale CLI
+### 🔥🔥🔥 UNDER CONSTRUCTION, DO NOT USE🔥🔥🔥
+
+# Heroku Buildpack for PlanetScale CLI
 
 This is a Heroku buildpack for adding Planetscale CLI into your project.
 

@@ -65,7 +65,7 @@ module Planetscale
           file.puts "# add pscale to the path"
           file.puts "export PATH=$PATH:$HOME/#{install_pathname.basename}"
         end
-        puts "----- Created profile.d Script at #{profile_path}"
+        puts "----- Created profile.d script at #{profile_path}"
       end
     end
   end

@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+# bin/compile <build-dir> <cache-dir> <env-dir>
+
+$:.unshift File.expand_path("../../lib", __FILE__)
+require "planetscale"
+
+Planetscale::Installer.run(ARGV[0])

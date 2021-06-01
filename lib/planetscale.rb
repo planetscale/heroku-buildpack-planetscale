@@ -56,7 +56,7 @@ module Planetscale
       end
 
       def version
-        ENV["PSCALE_CLI_VERSION"] || "0.40.0"
+        ENV["PLANETSCALE_CLI_VERSION"] || "0.42.0"
       end
 
       def setup_profile_d(install_pathname, bin_dir)

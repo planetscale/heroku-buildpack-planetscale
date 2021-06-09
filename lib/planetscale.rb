@@ -1,5 +1,8 @@
 require "fileutils"
 require "pathname"
+require "net/http"
+require "uri"
+require "json"
 
 module Planetscale
   class Installer
@@ -56,7 +59,16 @@ module Planetscale
       end
 
       def version
-        ENV["PLANETSCALE_CLI_VERSION"] || "0.42.0"
+        return ENV["PLANETSCALE_CLI_VERSION"] if ENV["PLANETSCALE_CLI_VERSION"]
+
+        uri = URI.parse("https://api.github.com/repos/planetscale/cli/releases/latest")
+        response = Net::HTTP.get_response(uri)
+
+        if response.code == "200"
+          JSON.parse(response.body)["tag_name"].gsub("v", "")
+        else
+          "0.45.0"
+        end
       end
 
       def setup_profile_d(install_pathname, bin_dir)

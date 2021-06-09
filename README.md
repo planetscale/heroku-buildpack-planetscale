@@ -12,12 +12,12 @@ Add this buildpack to your Heroku project
 heroku buildpacks:add https://github.com/planetscale/heroku-buildpack-planetscale
 ```
 
-The command will install [`pscale` CLI](https://github.com/planetscale/heroku-buildpack-planetscale) into your Heroku application.
+The command will install [`pscale` CLI](https://github.com/planetscale/cli) into your Heroku application.
 
 This buildpack also supports installing a specific cli version by setting the `PLANETSCALE_CLI_VERSION` environment variable.
 
 ```
-heroku config:set PLANETSCALE_CLI_VERSION=0.42.0
+heroku config:set PLANETSCALE_CLI_VERSION=0.45.0
 ```
 
 ## Documentation

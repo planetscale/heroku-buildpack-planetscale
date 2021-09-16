@@ -1,3 +1,9 @@
+# :stop_sign: This buildpack has been deprecated :stop_sign:
+
+Please [use connection strings](https://docs.planetscale.com/tutorials/connect-any-application) instead.
+
+---
+
 # Heroku Buildpack for PlanetScale CLI
 
 This is a Heroku buildpack for adding Planetscale CLI into your project.

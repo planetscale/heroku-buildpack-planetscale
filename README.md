@@ -1,6 +1,6 @@
 # :stop_sign: This buildpack has been deprecated :stop_sign:
 
-Please [use connection strings](https://docs.planetscale.com/tutorials/connect-any-application) instead.
+Please [use connection strings](https://planetscale.com/docs/tutorials/connect-any-application) instead.
 
 ---
 
